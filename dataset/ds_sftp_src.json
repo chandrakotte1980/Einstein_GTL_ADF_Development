@@ -1,0 +1,36 @@
+{
+	"name": "ds_sftp_src",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LNK_FS_LAB_STCA",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Folder_Path": {
+				"type": "string"
+			},
+			"File_Path": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "CIF"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "SftpLocation",
+				"fileName": {
+					"value": "@dataset().File_Path",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().Folder_Path",
+					"type": "Expression"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

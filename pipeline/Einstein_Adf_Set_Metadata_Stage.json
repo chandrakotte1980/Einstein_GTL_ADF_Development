@@ -1,0 +1,550 @@
+{
+	"name": "Einstein_Adf_Set_Metadata_Stage",
+	"properties": {
+		"activities": [
+			{
+				"name": "CIF_FS_GetMetaData",
+				"type": "GetMetadata",
+				"dependsOn": [
+					{
+						"activity": "Update Task Log Started",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_sftp_getmetadata",
+						"type": "DatasetReference",
+						"parameters": {
+							"folderpath": {
+								"value": "@pipeline().parameters.FilePath",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [
+						"childItems",
+						"itemName",
+						"itemType"
+					],
+					"storeSettings": {
+						"type": "FileServerReadSettings",
+						"recursive": true
+					}
+				}
+			},
+			{
+				"name": "Raise Error",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "CIF_FS_GetMetaData",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[CIF].[Sp_Einstein_Set_Object_Task_Execution_Log]",
+					"storedProcedureParameters": {
+						"Collected": {
+							"value": "0",
+							"type": "Int32"
+						},
+						"ErrorDesc": {
+							"value": {
+								"value": "@activity('CIF_FS_GetMetaData').Error.errorCode",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"GroupID": {
+							"value": {
+								"value": "@pipeline().parameters.TaskGroupID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"InRowcount": {
+							"value": "0",
+							"type": "Int32"
+						},
+						"IobjectID": {
+							"value": "0",
+							"type": "Int32"
+						},
+						"LogText": {
+							"value": {
+								"value": "Task GetMetaData is having some issue while extracting File metadata information",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"LogType": {
+							"value": "3",
+							"type": "Int32"
+						},
+						"OutRcount": {
+							"value": "0",
+							"type": "Int32"
+						},
+						"RejectedCount": {
+							"value": "0",
+							"type": "Int32"
+						},
+						"RunID": {
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"Severity": {
+							"value": "1",
+							"type": "Int32"
+						},
+						"Spresent": {
+							"value": "0",
+							"type": "Int32"
+						},
+						"Success": {
+							"value": "0",
+							"type": "Int32"
+						},
+						"TaskID": {
+							"value": {
+								"value": "@pipeline().parameters.TaskID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"TaskName": {
+							"value": {
+								"value": "Einsteinetadata_Stage",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"SystemID": {
+							"value": {
+								"value": "@pipeline().parameters.SystemID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_ASQL_GTL",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Update Task Log Started",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[CIF].[Sp_Einstein_Set_Object_Task_Execution_Log]",
+					"storedProcedureParameters": {
+						"Collected": {
+							"value": "1",
+							"type": "Int32"
+						},
+						"ErrorDesc": {
+							"value": {
+								"value": "No Error",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"GroupID": {
+							"value": {
+								"value": "@pipeline().parameters.TaskGroupID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"InRowcount": {
+							"value": "0",
+							"type": "Int32"
+						},
+						"IobjectID": {
+							"value": "0",
+							"type": "Int32"
+						},
+						"LogText": {
+							"value": {
+								"value": "Task collection between Source (STCA-LabServer) to Destination (Raw Layer)",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"LogType": {
+							"value": "1",
+							"type": "Int32"
+						},
+						"OutRcount": {
+							"value": "0",
+							"type": "Int32"
+						},
+						"RejectedCount": {
+							"value": "0",
+							"type": "Int32"
+						},
+						"RunID": {
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"Severity": {
+							"value": "3",
+							"type": "Int32"
+						},
+						"Spresent": {
+							"value": "1",
+							"type": "Int32"
+						},
+						"Success": {
+							"value": "1",
+							"type": "Int32"
+						},
+						"TaskID": {
+							"value": {
+								"value": "@pipeline().parameters.TaskID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"TaskName": {
+							"value": {
+								"value": "Einstein_Sl_Adf_Set_Metadata_Stage",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"SystemID": {
+							"value": {
+								"value": "@pipeline().parameters.SystemID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_ASQL_GTL",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Update Task Log Ended",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "CIF_Set_Metadata_FileLog_copy1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[CIF].[SpEinstein_Set_Object_Task_Execution_Update]",
+					"storedProcedureParameters": {
+						"GroupID": {
+							"value": {
+								"value": "@pipeline().parameters.TaskGroupID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"LogType": {
+							"value": "2",
+							"type": "Int32"
+						},
+						"RunID": {
+							"value": {
+								"value": "@pipeline().RunId",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"TaskID": {
+							"value": {
+								"value": "@pipeline().parameters.TaskID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"SystemID": {
+							"value": {
+								"value": "@pipeline().parameters.SystemID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_ASQL_GTL",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "CIF_Set_Metadata_Stage",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "CIF_FS_GetMetaData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[CIF].[Sp_Einstein_SL_Insert_Filelog_Staging]",
+					"storedProcedureParameters": {
+						"filenames": {
+							"value": {
+								"value": "@string(activity('CIF_FS_GetMetadata').output.childitems)",
+								"type": "Expression"
+							},
+							"type": "String"
+						},
+						"last_modified_date": {
+							"value": {
+								"value": "@utcnow()",
+								"type": "Expression"
+							},
+							"type": "DateTime"
+						},
+						"ProjectID": {
+							"value": {
+								"value": "@pipeline().parameters.ProjectID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"system_id": {
+							"value": {
+								"value": "@pipeline().parameters.SystemID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"ConnectorID": {
+							"value": {
+								"value": "@pipeline().parameters.ConnectorID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_ASQL_GTL",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "CIF_Set_Metadata_FileLog",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "CIF_Set_Metadata_Stage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[CIF].[Sp_Einstein_SL_Set_Stage_FileLog]",
+					"storedProcedureParameters": {
+						"PathID": {
+							"value": {
+								"value": "@pipeline().parameters.PathID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"SystemID": {
+							"value": {
+								"value": "@pipeline().parameters.SystemID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"TaskGroupID": {
+							"value": {
+								"value": "@pipeline().parameters.TaskGroupID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"ProjectID": {
+							"value": {
+								"value": "@pipeline().parameters.ProjectID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"ConnectorID": {
+							"value": {
+								"value": "@pipeline().parameters.ConnectorID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_ASQL_GTL",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "CIF_Set_Metadata_FileLog_copy1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "CIF_Set_Metadata_FileLog",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[CIF].[Sp_Einstein_SL_Set_Stage_FileLog]",
+					"storedProcedureParameters": {
+						"PathID": {
+							"value": {
+								"value": "@pipeline().parameters.PathID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"SystemID": {
+							"value": {
+								"value": "@pipeline().parameters.SystemID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"TaskGroupID": {
+							"value": {
+								"value": "@pipeline().parameters.TaskGroupID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"ProjectID": {
+							"value": {
+								"value": "@pipeline().parameters.ProjectID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						},
+						"ConnectorID": {
+							"value": {
+								"value": "@pipeline().parameters.ConnectorID",
+								"type": "Expression"
+							},
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_ASQL_GTL",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"FilePath": {
+				"type": "string"
+			},
+			"SystemID": {
+				"type": "int"
+			},
+			"PathID": {
+				"type": "int"
+			},
+			"TaskGroupID": {
+				"type": "int"
+			},
+			"ProjectID": {
+				"type": "int"
+			},
+			"TaskID": {
+				"type": "int"
+			},
+			"ConnectorID": {
+				"type": "int"
+			}
+		},
+		"folder": {
+			"name": "CIF/SR/FS"
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

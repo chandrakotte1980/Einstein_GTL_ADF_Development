@@ -1,0 +1,27 @@
+{
+	"name": "Ds_Fs_STCA_File",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LNK_FS_LAB_STCA",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folder_path": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "DEV_GTL_ING"
+		},
+		"annotations": [],
+		"type": "FileShare",
+		"typeProperties": {
+			"fileName": "",
+			"folderPath": {
+				"value": "@dataset().folder_path",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

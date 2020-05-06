@@ -1,0 +1,14 @@
+{
+	"name": "LS_ADLS_GTL",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDataLakeStore",
+		"typeProperties": {
+			"dataLakeStoreUri": "https://shell01eunadls1lsxooibpa.azuredatalakestore.net/webhdfs/v1",
+			"tenant": "db1e96a8-a3da-442a-930b-235cac24cd5c",
+			"subscriptionId": "c977c615-a62f-4ad4-8782-247e7f1d3f77",
+			"resourceGroupName": "shell-01-rg-toviqawlscqlajjltddr"
+		}
+	}
+}

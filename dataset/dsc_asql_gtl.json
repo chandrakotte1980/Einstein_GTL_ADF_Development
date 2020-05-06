@@ -1,0 +1,1417 @@
+{
+	"name": "dsc_asql_gtl",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ASQL_GTL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "CIF"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Filename",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Unit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Aim of experiment",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Test nr. ",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Pre-treatment",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Test Conditions",
+				"type": "nvarchar"
+			},
+			{
+				"name": "R#",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CLA/CT#",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Shape",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CF",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Intake (g)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Catalyst Bed Height (cm)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Inert Bottom (cm)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Inert Top (cm)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Total Bed Height (cm)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Inert Material",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CBD (g/ml)",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Intake (ml)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Tube ø (mm)",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GHSV reduction",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Type",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Date&Time",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "HYDROGEN",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NITROGEN",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CARBONMONOXIDE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CARBONDIOXIDE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "METHANETCD",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "METHANE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETHANE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ETHENE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PROPANE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "PROPENE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "N-BUTANE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "1-BUTENE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "N-PENTANE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "1-PENTENE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "N-HEXANE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "N-HEXENE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "HELIUM",
+				"type": "nvarchar"
+			},
+			{
+				"name": "N-HEPTANE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "N-HEPTENE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "N-OCTANE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "N-OCTENE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "N-NONANE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "N-NONENE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "N-DECANE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "N-DECENE",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TOTAL",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Flow Reactor (ml/min)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Flow Reactor (OP)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Pressure Reactor (Barg)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Temp Reactor (°C)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Temp Oven (°C)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Room Pressure",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "HYDROGEN Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "NITROGEN Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CARBONMONOXIDE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CARBONDIOXIDE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "METHANETCD Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "METHANE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ETHANE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ETHENE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PROPANE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PROPENE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-BUTANE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "1-BUTENE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-PENTANE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "1-PENTENE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEXANE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEXENE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEPTANE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEPTENE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-OCTANE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-OCTENE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-NONANE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-NONENE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-DECANE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-DECENE Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "TOTAL Corr room pressure (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "HYDROGEN Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "NITROGEN Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CARBONMONOXIDE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CARBONDIOXIDE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "METHANETCD Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "METHANE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ETHANE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ETHENE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PROPANE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PROPENE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-BUTANE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "1-BUTENE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-PENTANE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "1-PENTENE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEXANE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEXENE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEPTANE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEPTENE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-OCTANE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-OCTENE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-NONANE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-NONENE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-DECANE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-DECENE Corr SOM GC (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Runhour",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CO Conversion",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "H2 Conversion",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "GHSV",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "GHSV Syngas",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CO converted (mlCO/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N2 Corr Factor",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "HYDROGEN N2 Corr factor (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CARBONMONOXIDE N2 Corr factor (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CARBONDIOXIDE N2 Corr factor (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Shift N2 Corr factor (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CO,in (Nl/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "H2, in (Nl/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N2, in (Nl/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CO,out (Nl/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "H2, out (Nl/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N2, out (Nl/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "CO2, out (Nl/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C1-C4 (Nl/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "H2O (Nl/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "total gas in (Nl/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "total gas out (Nl/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "total gas out excl H2O (Nl/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "contractie (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "steam pressure (bara) Reactor",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "steam pressure (bara) Oven",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "water partial pressure (bara)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "water RH (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Partial Pressure H2, in",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Partial Pressure H2, out",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Partial Pressure CO, in",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Partial Pressure CO, out",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Contraction Saturator",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PercH2AVG",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PercCOAVG",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AF V3.1",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "AF V3.2",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "STY (CO) g CH2/l/hr",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "WTY (CO) gCH2/kg/hr",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "METHANE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ETHANE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ETHENE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PROPANE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PROPENE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-BUTANE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "1-BUTENE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-PENTANE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "1-PENTENE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEXANE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEXENE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEPTANE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEPTENE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-OCTANE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-OCTENE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-NONANE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-NONENE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-DECANE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-DECENE Contr corrected (v/v%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "METHANE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ETHANE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ETHENE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PROPANE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PROPENE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-BUTANE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "1-BUTENE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-PENTANE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "1-PENTENE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEXANE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEXENE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEPTANE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEPTENE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-OCTANE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-OCTENE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-NONANE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-NONENE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-DECANE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-DECENE yield (g/l/hr)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "METHANE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ETHANE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "ETHENE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PROPANE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "PROPENE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-BUTANE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "1-BUTENE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-PENTANE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "1-PENTENE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEXANE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEXENE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEPTANE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-HEPTENE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-OCTANE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-OCTENE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-NONANE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-NONENE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-DECANE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "N-DECENE Selectivity (m/m %)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C5+ selectivity (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "FID/TCD",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C5+ corr",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C2 OLEFINICITIES (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C3 OLEFINICITIES (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C4 OLEFINICITIES (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C5 OLEFINICITIES (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C6 OLEFINICITIES (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C7 OLEFINICITIES (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C8 OLEFINICITIES (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C9 OLEFINICITIES (%)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C10 OLEFINICITIES (%)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "H-#",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "OR",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C1 Selectivity FID/TCD corr (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C2 Selectivity FID/TCD corr (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C3 Selectivity FID/TCD corr (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C4 Selectivity FID/TCD corr (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C5 Selectivity FID/TCD corr (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C6 Selectivity FID/TCD corr (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C7 Selectivity FID/TCD corr (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C8 Selectivity FID/TCD corr (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C9 Selectivity FID/TCD corr (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C10 Selectivity FID/TCD corr (%)",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "C2 Olefinicity (%C=)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C3 Olefinicity (%C=)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C4 Olefinicity (%C=)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C5 Olefinicity (%C=)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C6 Olefinicity (%C=)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C7 Olefinicity (%C=)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C8 Olefinicity (%C=)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Slope CO conv",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C5+ fitted OR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Slope OR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Alpha C3-C6 CO conv",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Alpha C3-C8 CO conv",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Alpha C3-C7 CO conv",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Alpha C3-C6 OR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Alpha C3-C8 OR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C3-C6 Fitted Non Schulz Flory CH4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C3-C8 Fitted Non Schulz Flory CH4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C3-C6 Fitted Missing Schulz Flory C2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C3-C8 Fitted Missing Schulz Flory C2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C5+ Intercept CO conv",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C5+ Intercept OR",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Start Time Fit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "End Time Fit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Start Fit Runhour",
+				"type": "nvarchar"
+			},
+			{
+				"name": "End Fit Runhour",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Feedratio (H2/CO)",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-parDistFit - C1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-parDistFit - C2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-parDistFit - C3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-parDistFit - C4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-parDistFit - C5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-parDistFit - C6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-parDistFit - C7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-parDistFit - C8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-parDistFit - C9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-parDistFit - C10",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-oleDistFit - C2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-oleDistFit - C3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-oleDistFit - C4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-oleDistFit - C5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-oleDistFit - C6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-oleDistFit - C7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-oleDistFit - C8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-oleDistFit - C9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "C-oleDistFit - C10",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SF-DistFit - C1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SF-DistFit - C2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SF-DistFit - C3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SF-DistFit - C4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SF-DistFit - C5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SF-DistFit - C6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SF-DistFit - C7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SF-DistFit - C8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Slope-FittedC# - C1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Slope-FittedC# - C2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Slope-FittedC# - C3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Slope-FittedC# - C4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Slope-FittedC# - C5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Slope-FittedC# - C6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Slope-FittedC# - C7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Slope-FittedC# - C8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Slope-FittedC# - C9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Slope-FittedC# - C10",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Interc-FittedC# - C1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Interc-FittedC# - C2",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Interc-FittedC# - C3",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Interc-FittedC# - C4",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Interc-FittedC# - C5",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Interc-FittedC# - C6",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Interc-FittedC# - C7",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Interc-FittedC# - C8",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Interc-FittedC# - C9",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Interc-FittedC# - C10",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "stg",
+			"table": "STCA_0094_ExpInfo"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

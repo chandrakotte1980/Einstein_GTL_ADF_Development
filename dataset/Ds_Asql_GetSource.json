@@ -1,0 +1,16 @@
+{
+	"name": "Ds_Asql_GetSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ASQL_GTL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "DEV_GTL_ING"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

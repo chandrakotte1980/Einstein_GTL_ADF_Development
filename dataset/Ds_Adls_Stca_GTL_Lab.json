@@ -1,0 +1,27 @@
+{
+	"name": "Ds_Adls_Stca_GTL_Lab",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLS_GTL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folder_path": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "DEV_GTL_ING"
+		},
+		"annotations": [],
+		"type": "AzureDataLakeStoreFile",
+		"typeProperties": {
+			"fileName": "",
+			"folderPath": {
+				"value": "@dataset().folder_path",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

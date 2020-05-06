@@ -1,0 +1,215 @@
+{
+	"name": "Master_Get_Metadata_GTL_STCA",
+	"properties": {
+		"activities": [
+			{
+				"name": "hte_getmetadata",
+				"type": "GetMetadata",
+				"dependsOn": [
+					{
+						"activity": "hte source Lookup",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Ds_Fs_Metadata_STCA_GTL",
+						"type": "DatasetReference",
+						"parameters": {
+							"folderpath": {
+								"value": "@activity('hte source Lookup').output.firstrow.folderpath",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [
+						"itemName",
+						"itemType",
+						"lastModified",
+						"childItems"
+					]
+				}
+			},
+			{
+				"name": "hte source Lookup",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[usp_get_datasource]",
+						"storedProcedureParameters": {
+							"file_source": {
+								"type": "String",
+								"value": "STCA"
+							}
+						}
+					},
+					"dataset": {
+						"referenceName": "Ds_Asql_GetSource",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": true
+				}
+			},
+			{
+				"name": "ExpInfo_MuSyCon",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "hte_getmetadata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('hte_getmetadata').output.childitems",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "sp_run_request",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[usp_insert_filelog_ExpInfo_MuSyCon]",
+								"storedProcedureParameters": {
+									"file_size": {
+										"value": "0",
+										"type": "Decimal"
+									},
+									"filename": {
+										"value": {
+											"value": "@item().name ",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"filesource": {
+										"value": "STCA",
+										"type": "String"
+									},
+									"last_modified_date": {
+										"value": {
+											"value": "@activity('hte_getmetadata').output.lastModified",
+											"type": "Expression"
+										},
+										"type": "DateTime"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "LS_ASQL_GTL",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Child_Data_FS_ADLS_GTL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ExpInfo_MuSyCon",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Child_Data_FS_ADLS_GTL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Einstein_Catalyst_Samples_Load_GTL",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Child_Data_FS_ADLS_GTL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Einstein_Catalyst_Samples_Load_GTL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Child_Data_FS_ADLS_STCA_Transformation",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Einstein_Catalyst_Samples_Load_GTL",
+						"dependencyConditions": [
+							"Skipped"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://management.azure.com/subscriptions/f46f888b-af9b-4d23-a623-65c6eb91ca74/resourceGroups/shell-02-rg-cidadbtkgzutkkyecobd/providers/Microsoft.DataFactory/factories/shell-02-eun-adf-ywpfynbrulxlohxckjz/pipelines/Child_Data_FS_ADLS_GTL/createRun?api-version=2018-06-01",
+					"method": "POST",
+					"body": "test",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://management.azure.com/"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "DEV_GTL_ING"
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

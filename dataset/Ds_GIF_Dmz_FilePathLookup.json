@@ -1,0 +1,16 @@
+{
+	"name": "Ds_GIF_Dmz_FilePathLookup",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ASQL_GTL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "CIF"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

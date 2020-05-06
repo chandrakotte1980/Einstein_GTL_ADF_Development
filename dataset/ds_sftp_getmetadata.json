@@ -1,0 +1,29 @@
+{
+	"name": "ds_sftp_getmetadata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LNK_FS_LAB_STCA",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folderpath": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "CIF"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "SftpLocation",
+				"folderPath": {
+					"value": "@dataset().folderpath",
+					"type": "Expression"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,25 @@
+{
+	"name": "LS_FS_STCA",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "\\\\dmke-amslab.shell.com\\",
+			"userId": "EUROPE\\App-EinsteinGL-Dev-S",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "einsteinappkeyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "App-EinsteinGL-Dev-S",
+				"secretVersion": "404fa305e5ab4e2ca712b122b26e85e5"
+			}
+		},
+		"connectVia": {
+			"referenceName": "SHIRAmsterdam",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

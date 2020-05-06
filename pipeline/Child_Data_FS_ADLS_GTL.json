@@ -1,0 +1,254 @@
+{
+	"name": "Child_Data_FS_ADLS_GTL",
+	"properties": {
+		"activities": [
+			{
+				"name": "ExpInfo",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[usp_get_filename]",
+						"storedProcedureParameters": {
+							"file_name": {
+								"type": "String",
+								"value": "94"
+							},
+							"file_process_status": {
+								"type": "String",
+								"value": "Arrived"
+							},
+							"file_shortname": {
+								"type": "String",
+								"value": "ExpInfo"
+							},
+							"file_sub_short_name": {
+								"type": "String",
+								"value": "ExpInfo"
+							},
+							"filesource": {
+								"type": "String",
+								"value": "STCA"
+							}
+						}
+					},
+					"dataset": {
+						"referenceName": "Ds_Asql_GetSource",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Fs_Adls_ExpInfo",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "ExpInfo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('ExpInfo').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "Copy ExpInfo",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "FileSystemSource",
+									"recursive": true
+								},
+								"sink": {
+									"type": "AzureDataLakeStoreSink"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "Ds_Fs_STCA_File",
+									"type": "DatasetReference",
+									"parameters": {
+										"folder_path": {
+											"value": "@item().file_path",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Ds_Adls_Stca_GTL_Lab",
+									"type": "DatasetReference",
+									"parameters": {
+										"folder_path": {
+											"value": "@item().adls_landing_file_path",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "MuSyCon",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Fs_Adls_ExpInfo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[usp_get_filename]",
+						"storedProcedureParameters": {
+							"file_name": {
+								"type": "String",
+								"value": "94"
+							},
+							"file_process_status": {
+								"type": "String",
+								"value": "Arrived"
+							},
+							"file_shortname": {
+								"type": "String",
+								"value": "MuSyCon"
+							},
+							"file_sub_short_name": {
+								"type": "String",
+								"value": "MuSyCon"
+							},
+							"filesource": {
+								"type": "String",
+								"value": "STCA"
+							}
+						}
+					},
+					"dataset": {
+						"referenceName": "Ds_Asql_GetSource",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Fs_Adls_MuSyCon",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "MuSyCon",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('MuSyCon').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "Cpy MuSyCon",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "FileSystemSource",
+									"recursive": true
+								},
+								"sink": {
+									"type": "AzureDataLakeStoreSink"
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "Ds_Fs_STCA_File",
+									"type": "DatasetReference",
+									"parameters": {
+										"folder_path": {
+											"value": "@item().file_path",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Ds_Adls_Stca_GTL_Lab",
+									"type": "DatasetReference",
+									"parameters": {
+										"folder_path": {
+											"value": "@item().adls_landing_file_path",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"Revision_Date": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "DEV_GTL_ING"
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

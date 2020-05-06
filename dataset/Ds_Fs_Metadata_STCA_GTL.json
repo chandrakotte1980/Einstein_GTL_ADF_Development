@@ -1,0 +1,27 @@
+{
+	"name": "Ds_Fs_Metadata_STCA_GTL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_FS_STCA",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folderpath": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "DEV_GTL_ING"
+		},
+		"annotations": [],
+		"type": "FileShare",
+		"typeProperties": {
+			"fileName": "",
+			"folderPath": {
+				"value": "@dataset().folderpath",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

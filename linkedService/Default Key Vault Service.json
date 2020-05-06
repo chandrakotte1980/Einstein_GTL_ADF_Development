@@ -1,0 +1,11 @@
+{
+	"name": "Default Key Vault Service",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://shell-02-eun-kv-keqraube.vault.azure.net/"
+		}
+	}
+}

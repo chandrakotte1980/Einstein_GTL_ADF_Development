@@ -1,0 +1,277 @@
+{
+	"name": "Einstein_Sl_Adf_Get_Connector",
+	"properties": {
+		"description": "This pipeline will collect the schedule connector information from metadata catalog",
+		"activities": [
+			{
+				"name": "Connector_Lookup",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[GIF].[Sp_Retail_SL_Get_Connector]",
+						"storedProcedureParameters": {
+							"Connector": {
+								"type": "String",
+								"value": "SFTP"
+							}
+						}
+					},
+					"dataset": {
+						"referenceName": "Ds_GIF_Dmz_FilePathLookup",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Connector Iteration",
+				"description": "Iterate Connector_Lookup activity output.",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Connector_Lookup",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Connector_Lookup').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "FS-LabServer",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(item().Connector,'FS-LabServer')",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "Retail_Sl_Adl_Get_File_Metadata",
+										"type": "ExecutePipeline",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "Einstein_Adf_Set_Metadata_Stage",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"TaskGroupID": {
+													"value": "@item().TaskGroupID",
+													"type": "Expression"
+												},
+												"SourceID": {
+													"value": "@item().SourcePathID",
+													"type": "Expression"
+												},
+												"SystemID": {
+													"value": "@item().SystemID",
+													"type": "Expression"
+												},
+												"ProjectID": {
+													"value": "@item().ProjectID",
+													"type": "Expression"
+												},
+												"TaskID": {
+													"value": "@item().TaskID",
+													"type": "Expression"
+												},
+												"ConnectorID": {
+													"value": "@item().ConnectorID",
+													"type": "Expression"
+												}
+											}
+										}
+									}
+								]
+							}
+						},
+						{
+							"name": "DMKE",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(item().Connector,'DMKE')",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "Retail_Sl_Adl_Get_File_Metadata_copy1",
+										"type": "ExecutePipeline",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "Einstein_Adf_Set_Metadata_Stage",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"TaskGroupID": {
+													"value": "@item().TaskGroupID",
+													"type": "Expression"
+												},
+												"SourceID": {
+													"value": "@item().SourcePathID",
+													"type": "Expression"
+												},
+												"SystemID": {
+													"value": "@item().SystemID",
+													"type": "Expression"
+												},
+												"ProjectID": {
+													"value": "@item().ProjectID",
+													"type": "Expression"
+												},
+												"TaskID": {
+													"value": "@item().TaskID",
+													"type": "Expression"
+												},
+												"ConnectorID": {
+													"value": "@item().ConnectorID",
+													"type": "Expression"
+												}
+											}
+										}
+									}
+								]
+							}
+						},
+						{
+							"name": "SampleManager",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(item().Connector,'DMKE')",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "Retail_Sl_Adl_Get_File_Metadata_copy1_copy1",
+										"type": "ExecutePipeline",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "Einstein_Adf_Set_Metadata_Stage",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"TaskGroupID": {
+													"value": "@item().TaskGroupID",
+													"type": "Expression"
+												},
+												"SourceID": {
+													"value": "@item().SourcePathID",
+													"type": "Expression"
+												},
+												"SystemID": {
+													"value": "@item().SystemID",
+													"type": "Expression"
+												},
+												"ProjectID": {
+													"value": "@item().ProjectID",
+													"type": "Expression"
+												},
+												"TaskID": {
+													"value": "@item().TaskID",
+													"type": "Expression"
+												},
+												"ConnectorID": {
+													"value": "@item().ConnectorID",
+													"type": "Expression"
+												}
+											}
+										}
+									}
+								]
+							}
+						},
+						{
+							"name": "PI-Tags",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(item().Connector,'DMKE')",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "Retail_Sl_Adl_Get_File_Metadata_copy1_copy1_copy1",
+										"type": "ExecutePipeline",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"pipeline": {
+												"referenceName": "Einstein_Adf_Set_Metadata_Stage",
+												"type": "PipelineReference"
+											},
+											"waitOnCompletion": true,
+											"parameters": {
+												"TaskGroupID": {
+													"value": "@item().TaskGroupID",
+													"type": "Expression"
+												},
+												"SourceID": {
+													"value": "@item().SourcePathID",
+													"type": "Expression"
+												},
+												"SystemID": {
+													"value": "@item().SystemID",
+													"type": "Expression"
+												},
+												"ProjectID": {
+													"value": "@item().ProjectID",
+													"type": "Expression"
+												},
+												"TaskID": {
+													"value": "@item().TaskID",
+													"type": "Expression"
+												},
+												"ConnectorID": {
+													"value": "@item().ConnectorID",
+													"type": "Expression"
+												}
+											}
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		],
+		"folder": {
+			"name": "CIF/SR/Master-Connect"
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,16 @@
+{
+	"name": "ds_Oracle_src",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ORC_SM_EUROPE",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "CIF"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

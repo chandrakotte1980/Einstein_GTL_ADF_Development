@@ -1,0 +1,24 @@
+{
+	"name": "ds_adls_ct",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLS_GTL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "CIF"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureDataLakeStoreLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

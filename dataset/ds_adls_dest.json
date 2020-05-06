@@ -1,0 +1,30 @@
+{
+	"name": "ds_adls_dest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADLS_GTL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Folder_Path": {
+				"type": "string"
+			},
+			"File_Name": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "CIF"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureDataLakeStoreLocation",
+				"fileName": "2019-07-07-M1.csv",
+				"folderPath": "RAW/W00008-EIN-GTL/GTL-STCA-LAB/INITIAL/0094/Catalyst and Tube"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

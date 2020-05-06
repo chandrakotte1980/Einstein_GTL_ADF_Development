@@ -1,0 +1,17 @@
+{
+	"name": "LS_AWS_DMKE_SQLDB",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=True;data source=10.194.167.253;initial catalog=EKB",
+			"userName": "Extranet-EU\\APP-Einstein-DEV-S",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJmNWFkMWM4Ny00MDM4LTRmN2ItOGM2NC1jNDdlZjc0YTlhNTEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SHIRAmsterdam",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

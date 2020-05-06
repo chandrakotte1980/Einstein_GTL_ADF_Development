@@ -1,0 +1,16 @@
+{
+	"name": "ds_src_aws_sql_gtl",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AWS_DMKE_SQLDB",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "CIF"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

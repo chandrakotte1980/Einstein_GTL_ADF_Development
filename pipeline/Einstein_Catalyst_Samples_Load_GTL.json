@@ -1,0 +1,764 @@
+{
+	"name": "Einstein_Catalyst_Samples_Load_GTL",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "DMKE_Lookup",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('DMKE_Lookup').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "CPY_FS_ADLS_CB_CT_Numbers",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureDataLakeStoreReadSettings",
+										"recursive": true,
+										"wildcardFileName": "*.csv",
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"preCopyScript": "truncate table  [stg].[Src_DMKE_CT_CatalystSample]",
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"enableSkipIncompatibleRow": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Experiment_Title",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Experiment_Title",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Aim_Of_Experiment",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Aim_Of_Experiment",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Processor_Version",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Processor_Version",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Test_Number",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Test_Number",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Test_Type",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Test_Type",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Requestor",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Requestor",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Unit_ID",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Unit_ID",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Reactor_Number",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Reactor_Number",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Sample_Loading",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Sample_Loading",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Reactor_Diameter[cm]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Reactor_Diameter[cm]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Background_Experiment",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Background_Experiment",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CLA",
+												"type": "String"
+											},
+											"sink": {
+												"name": "CLA",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CLA_1",
+												"type": "String"
+											},
+											"sink": {
+												"name": "CLA_1",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CLA_2",
+												"type": "String"
+											},
+											"sink": {
+												"name": "CLA_2",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CLA_3",
+												"type": "String"
+											},
+											"sink": {
+												"name": "CLA_3",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Description",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Description",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Total_Bed_Height[cm]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Total_Bed_Height[cm]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Bed_Height_1[cm]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Bed_Height_1[cm]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Bed_Height_2[cm]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Bed_Height_2[cm]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Bed_Height_3[cm]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Bed_Height_3[cm]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Diluent_Factor[v/v]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Diluent_Factor[v/v]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "1_Diluent_Factor[v/v]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "1_Diluent_Factor[v/v]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "2_Diluent_Factor[v/v]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "2_Diluent_Factor[v/v]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "3_Diluent_Factor[v/v]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "3_Diluent_Factor[v/v]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Diluent_Type",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Diluent_Type",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "1_Diluent_Type",
+												"type": "String"
+											},
+											"sink": {
+												"name": "1_Diluent_Type",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "2_Diluent_Type",
+												"type": "String"
+											},
+											"sink": {
+												"name": "2_Diluent_Type",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "3_Diluent_Type",
+												"type": "String"
+											},
+											"sink": {
+												"name": "3_Diluent_Type",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Diluent_Size[mm]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Diluent_Size[mm]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "1_Diluent_Size[mm]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "1_Diluent_Size[mm]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "2_Diluent_Size[mm]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "2_Diluent_Size[mm]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "3_Diluent_Size[mm]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "3_Diluent_Size[mm]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Volume_Reactor[ml]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Volume_Reactor[ml]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "1_Volume_Reactor[ml]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "1_Volume_Reactor[ml]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "2_Volume_Reactor[ml]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "2_Volume_Reactor[ml]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "3_Volume_Reactor[ml]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "3_Volume_Reactor[ml]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Intake_weight[g]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Intake_weight[g]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "1_intake_weight[g]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "1_intake_weight[g]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "2_intake_weight[g]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "2_intake_weight[g]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "3_intake_weight[g]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "3_intake_weight[g]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "intake_volume[ml]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "intake_volume[ml]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "1_intake_volume[ml]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "1_intake_volume[ml]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "2_intake_volume[ml]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "2_intake_volume[ml]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "3_intake_volume[ml]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "3_intake_volume[ml]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Diluent_Intake[g]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Diluent_Intake[g]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "1_Diluent_Intake[g]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "1_Diluent_Intake[g]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "2_Diluent_Intake[g]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "2_Diluent_Intake[g]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "3_Diluent_Intake[g]",
+												"type": "String"
+											},
+											"sink": {
+												"name": "3_Diluent_Intake[g]",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Pre_Treatment",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Pre_Treatment",
+												"type": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CT_number",
+												"type": "String"
+											},
+											"sink": {
+												"name": "CT_number",
+												"type": "String"
+											}
+										}
+									]
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_adls_catalystsamples",
+									"type": "DatasetReference",
+									"parameters": {
+										"folder_path": {
+											"value": "@item().adls_landing_file_path",
+											"type": "Expression"
+										},
+										"file_path": "*.csv"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_asql_src_catalystsamples",
+									"type": "DatasetReference"
+								}
+							]
+						},
+						{
+							"name": "Lookup4",
+							"type": "Lookup",
+							"dependsOn": [
+								{
+									"activity": "CPY_FS_ADLS_CB_CT_Numbers",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": "SELECT STUFF((SELECT distinct ',' +  'CT-'+convert (nvarchar(10),ct_number)\n            FROM [stg].[Src_DMKE_CT_CatalystSample]\n\t\t\t--where catalyst_id like '%ct%'\n            FOR XML PATH('')) ,1,1,''\n\t\t\t) AS ctnumber,NULL as cbnumber"
+								},
+								"dataset": {
+									"referenceName": "ds_asql_dest",
+									"type": "DatasetReference"
+								},
+								"firstRowOnly": true
+							}
+						},
+						{
+							"name": "If Condition2",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "Lookup4",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@equals(activity('Lookup4').output.firstRow.ctnumber,null)",
+									"type": "Expression"
+								},
+								"ifFalseActivities": [
+									{
+										"name": "Cpy_DMKE_ADLS_CT_Numbers",
+										"type": "Copy",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "7.00:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "SqlServerSource",
+												"sqlReaderStoredProcedureName": "[dbo].[spExtractCatalystPropertiesDMKE_GTL]",
+												"storedProcedureParameters": {
+													"catlystNameList": {
+														"type": "String",
+														"value": {
+															"value": "@activity('Lookup4').output.firstRow.ctnumber",
+															"type": "Expression"
+														}
+													},
+													"cbNumberList": {
+														"type": "String",
+														"value": {
+															"value": "@activity('Lookup4').output.firstRow.cbnumber",
+															"type": "Expression"
+														}
+													}
+												}
+											},
+											"sink": {
+												"type": "DelimitedTextSink",
+												"storeSettings": {
+													"type": "AzureDataLakeStoreWriteSettings"
+												},
+												"formatSettings": {
+													"type": "DelimitedTextWriteSettings",
+													"quoteAllText": true,
+													"fileExtension": ".txt"
+												}
+											},
+											"enableStaging": false
+										},
+										"inputs": [
+											{
+												"referenceName": "ds_src_aws_sql_gtl",
+												"type": "DatasetReference"
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "ds_dest_adls_dkme_sample_ct",
+												"type": "DatasetReference",
+												"parameters": {
+													"folder_path": {
+														"value": "@item().dmke_file_path",
+														"type": "Expression"
+													},
+													"file_path": {
+														"value": "Catalystsamples_CT.csv",
+														"type": "Expression"
+													}
+												}
+											}
+										]
+									}
+								]
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "DMKE_Lookup",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[usp_get_filename]",
+						"storedProcedureParameters": {
+							"file_name": {
+								"type": "String",
+								"value": "94"
+							},
+							"file_process_status": {
+								"type": "String",
+								"value": "Arrived"
+							},
+							"file_shortname": {
+								"type": "String",
+								"value": "ExpInfo"
+							},
+							"file_sub_short_name": {
+								"type": "String",
+								"value": "ExpInfo"
+							},
+							"filesource": {
+								"type": "String",
+								"value": "STCA"
+							}
+						}
+					},
+					"dataset": {
+						"referenceName": "ds_asql_dest",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			}
+		],
+		"variables": {
+			"Revision_Date": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "DEV_GTL_ING"
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
